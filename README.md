@@ -41,7 +41,7 @@ Our solution:
 
     5 xt-of DUP EXECUTE ( 5 5 )  cr .. ( -> 5 5 )  \ interpretation semantics of xt-of
 
-Most parts of the discussion in comp.lang.forth on this topic deals with (new) implementation techniques, that allow for words with independently defined *interpretation semantics* 
+Most parts of the discussion in comp.lang.forth on this topic deal with (new) implementation techniques, that allow for words with independently defined *interpretation semantics* 
 ("The behavior of a Forth definition when its name is encountered by the text interpreter in interpretation state.", [Forth94], 2.1 Definitions of terms) 
 and *compilation semantics* ("The behavior of a Forth definition when its name is encountered by the text interpreter in compilation state").
 Eventually a word is executed and perfoms its *execution semantics* (i.e. The behavior of a Forth definition when it is executed.)
@@ -58,28 +58,28 @@ Traditionally Forth knows about two kinds of words:
     - They have an execution semantics according to their (colon) definition.  
     - Their interpretation semantics is to perform their execution semantics, i.e. execute the word.
     - Their compilation semantics is to compile code (into the current definition) so that the word's execution 
-      semantics is performed if that code later runs. The community also calls this *default compilation semantics*<sup>1</sup> 
+      semantics is performed if that code later runs. The community also calls this *default compilation semantics* (1) 
     - Examples for normal words are: ``DUP``, ``AND``, or ``ALLOT``.
 
 - **immediate words** ("A Forth word whose compilation semantics are to perform its execution semantics.", [Forth94], 2.1 Definitions of terms)
     - They have an execution semantics according to their (colon) definition. Their immediacy is specified by using `IMMEDIATE` right after the word's definition.
     - Their interpretation semantices is to perform their execution semantics, i.e. execute the word.
     - Their compilation semantics is also to perform their execution semantics, i.e. execute the word.
-    - Example for immediate words are ``(``, ``.(``, ``[`` or ``[IF]``.
+    - Examples for immediate words are ``(``, ``.(``, ``[``, or ``[IF]``.
     - [Forth94] however does not consider control structures or ``;`` to be immediate words and allows for other implementation techniques, so 
 
 in addition [Forth94] words need not necessarily be immediate and can have divergent interpretation semantics and 
 compilation semantics. As a special case their interpretation semantics could be left undefined (which means a compliant 
-Forth system could react in a system specific<sup>2</sup> way when interpreting such a word, e.g. display an 
-error message, abort the program, or perform the word's execution semantics<sup>3</sup>; a standard program could 
+Forth system could react in a system specific (2) way when interpreting such a word, e.g. display an 
+error message, abort the program, or perform the word's execution semantics (3); a standard program could 
 not rely an a certain system behaviour).
 The community calls words with undefined interpretation semantics *compile-only* words and words with divergent interpretation and compilation semantics to have *non-default compilation semantics* (NDCS).  
 Examples of words with undefined interpretation semantics are ``;``, ``IF``, ``."``, or ``SLITERAL``.  
 Examples of words with divergent interpretation and compilation semantics are ``TO`` or ``S"``.  
 
-<sup>1</sup>See [Forth94], 3.4.3.3 *Compilation Semantics* for the formal definition.  
-<sup>2</sup>*Interpretating a word with undefined interpretation semantics* is an *ambiguous condition*, see [Forth94], 4.1.2 *Ambiguous conditions*  
-<sup>3</sup>See [Forth94], 3.4.4 *Possible actions on an ambiguous condition*
+(1) See [Forth94], 3.4.3.3 *Compilation Semantics* for the formal definition.  
+(2) *Interpretating a word with undefined interpretation semantics* is an *ambiguous condition*, see [Forth94], 4.1.2 *Ambiguous conditions*  
+(3) See [Forth94], 3.4.4 *Possible actions on an ambiguous condition*
 
 ---
 
@@ -137,7 +137,7 @@ interpretation semantics in the wordlist ``interpretive-wordlist`` and search th
 interpreter is in interpretation state.
 If a name is found there, the text interpreter will perform its execution semantics.   
 When in compilation state, ``interpretive-wordlist`` is not searched, the interactive words are not found and
-their normal definition are used: Default compilation semantics on normal words and performing the execution semantics on
+their normal definitions are used: Default compilation semantics on normal words and performing the execution semantics on
 immediate words. All standard words that change between compilation state and interpretation state are redefined accordingly.
  
 The advantage of this approach is that it uses only capabilities already existing in standard Forth94. No new features
@@ -166,7 +166,7 @@ In order to define words with divergent interpretation semantics we use the form
 	
 	}interpretive
 	
-`interpretive{` and `}interpretive` temporarily set `interpretice-wordlist` to be the current wordlist and revert to the previous current wordlist respectively. Other implementation techniques could be used with this notation.
+`interpretive{` and `}interpretive` temporarily set `interpretive-wordlist` to be the current wordlist and revert to the previous current wordlist respectively. Other implementation techniques could be used with this notation.
 
 
 ### Ticking words 
