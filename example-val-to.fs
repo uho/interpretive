@@ -11,7 +11,9 @@ S" interpretive.fs" INCLUDED
     ' >BODY POSTPONE LITERAL POSTPONE ! ; IMMEDIATE
 
 interpretive{
-: -> ( x <name> -- ) ' >BODY ! ;
+    
+  : -> ( x <name> -- ) ' >BODY ! ;
+
 }interpretive
 
 \ define increment operator +->
@@ -20,7 +22,9 @@ interpretive{
     >IN @ >R  ' COMPILE,  POSTPONE +  R> >IN !  POSTPONE -> ; IMMEDIATE
 
 interpretive{
-: +-> ( x <name> -- )  >IN @ >R ' EXECUTE  +  R> >IN !  [ ' -> ] LITERAL  EXECUTE ;
+
+  : +-> ( x <name> -- )  >IN @ >R ' EXECUTE  +  R> >IN !  [ ' -> ] LITERAL  EXECUTE ;
+
 }interpretive
 
 5 Val score
