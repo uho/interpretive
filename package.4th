@@ -1,11 +1,12 @@
 forth-package
 key-value name interpretive
-key-value version 1.0.1
+key-value version 1.0.2
 key-value description Standard Forth support for words with special interpretation and compilation semantics
 key-list tags ANSForth94 
 key-list tags Forth94 
 key-list tags Forth-94 
 key-list tags NDCS
+key-list tags dual
 key-list tags special
 key-list tags interpretation semantics
 key-list tags compilation semantics

@@ -73,7 +73,8 @@ compilation semantics. As a special case their interpretation semantics could be
 Forth system could react in a system specific (2) way when interpreting such a word, e.g. display an 
 error message, abort the program, or perform the word's execution semantics (3); a standard program could 
 not rely an a certain system behaviour).
-The community calls words with undefined interpretation semantics *compile-only* words and words with divergent interpretation and compilation semantics to have *non-default compilation semantics* (NDCS).  
+The community calls words with undefined interpretation semantics *compile-only* words and words with divergent interpretation and compilation semantics to have 
+*dual* semantics (or earlier in the discussion to have *NDCS* semantics, i.e. *non-default compilation semantics*).
 Examples of words with undefined interpretation semantics are ``;``, ``IF``, ``."``, or ``SLITERAL``.  
 Examples of words with divergent interpretation and compilation semantics are ``TO`` or ``S"``.  
 
@@ -90,14 +91,14 @@ Here is summary of the [Forth94] word kinds:
 | *normal*     | perform execution semantics                    | compile execution semantics                 | DUP     | normal :-definitions
 | immediate    | perform execution semantics                    | perform execution semantics                 | .(      | IMMEDIATE definitions
 | compile-only | undefined                                      | perform execution semantics                 | IF      | interpretation semantics undefined
-| NDCS         | perform execution semantics for interpretation | perform execution semantics for compilation | S"      | divergent interpretation, compilation
+| dual         | perform execution semantics for interpretation | perform execution semantics for compilation | S"      | divergent interpretation, compilation
 
 ---
 
-Traditionally NDCS-words were defined as immediate *state-smart* words that behave differently whether they are interpreted or compiled by inspecting the 
+Traditionally dual words were defined as immediate *state-smart* words that behave differently whether they are interpreted or compiled by inspecting the 
 variable ``STATE`` at execution time of the state-smart word. This leads to inconsistent behaviour as pointed out by Anton Ertl in his Paper [*State-smartness-Why it is Evil and How to Exorcise it*][Ertl98].
 
-There are several ways to implement NDCS words as Anton Ertl points out in the [comp.lang.forth discussion](https://groups.google.com/forum/#!original/comp.lang.forth/D5dc6cugT2o/dnKEzaI6CwAJ):
+There are several ways to implement dual words as Anton Ertl points out in the [comp.lang.forth discussion](https://groups.google.com/forum/#!original/comp.lang.forth/D5dc6cugT2o/dnKEzaI6CwAJ):
 
 > There have been various implementations of this concept:
 >
@@ -132,7 +133,7 @@ There are several ways to implement NDCS words as Anton Ertl points out in the [
 
 ## interpretive-wordlist
 
-In the approach presented here the idea is to use a variation of a) to implement NDCS-words: define their 
+In the approach presented here the idea is to use a variation of a) to implement dual words: define their 
 interpretation semantics in the wordlist ``interpretive-wordlist`` and search this word list only when the text 
 interpreter is in interpretation state.
 If a name is found there, the text interpreter will perform its execution semantics.   
