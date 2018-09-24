@@ -86,12 +86,12 @@ Examples of words with divergent interpretation and compilation semantics are ``
 
 Here is summary of the [Forth94] word kinds:
 
-| word kind    | interpretation semantics                       | compilation semantics                       | example | comment
-|--------------|------------------------------------------------|---------------------------------------------|---------|--------------------------------------
-| *normal*     | perform execution semantics                    | compile execution semantics                 | DUP     | normal :-definitions
-| immediate    | perform execution semantics                    | perform execution semantics                 | .(      | IMMEDIATE definitions
-| compile-only | undefined                                      | perform execution semantics                 | IF      | interpretation semantics undefined
-| dual         | perform execution semantics for interpretation | perform execution semantics for compilation | S"      | divergent interpretation, compilation
+| word kind    | interpretation semantics                       | compilation semantics                                        | example | comment
+|--------------|------------------------------------------------|--------------------------------------------------------------|---------|--------------------------------------
+| *normal*     | perform execution semantics                    | *default compilation semantics*: compile execution semantics | DUP     | normal :-definitions
+| immediate    | perform execution semantics                    | perform execution semantics                                  | .(      | IMMEDIATE definitions
+| compile-only | undefined                                      | perform execution semantics                                  | IF      | interpretation semantics undefined
+| dual         | perform execution semantics for interpretation | perform execution semantics for compilation                  | S"      | divergent interpretation, compilation
 
 ---
 
