@@ -1,6 +1,6 @@
 forth-package
 key-value name interpretive
-key-value version 1.0.0
+key-value version 1.0.1
 key-value description Standard Forth support for words with special interpretation and compilation semantics
 key-list tags ANSForth94 
 key-list tags Forth94 
